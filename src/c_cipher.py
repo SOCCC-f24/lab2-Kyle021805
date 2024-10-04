@@ -1,7 +1,6 @@
 import logging
 logging.basicConfig(level=logging.INFO, format='%(message)s')
-
-def encrypt(email):
+def encrypt(email="abc012"):
     """
     TODO: What is the objective? 
 
@@ -54,7 +53,7 @@ def encrypt(email):
     retVal = email_str
     return retVal 
 
-def decrypt(email):
+def decrypt(email="def345"):
     """
     TODO: What is the objective? 
 
