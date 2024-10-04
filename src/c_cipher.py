@@ -19,7 +19,7 @@ def encrypt(email="abc012"):
     #     A = email[:3] (check first half)
     #     B = email[3:] (check second half)
     #     enum_flag = A or B
-    anum_flag = email[:3] != 'abc' or email[3:] != '012' 
+    anum_flag = (email[:3] != 'abc') or (email[3:] != '012')
 
     if len_flag:                         # NOTE: here we provide input validation on length
         output = "Length check failed\n"
@@ -33,14 +33,18 @@ def encrypt(email="abc012"):
         return output     
         
     # TODO: fix line below, process our string into a list
-    email_lst = ["a", "b", "c", "0", "1", "2"]
+    email_lst = ' '.join(email)
+    email_lst = email_lst.split(' ')
         
     # TODO: complete line(s) below, convert EACH new element into a string
-    new_ascii = ord(email_lst[0]) + 3    # NOTE: here we extract and update element at 0 
-    email_lst[0] = chr(new_ascii)        # NOTE: here we convert our ASCII into string
+    i = 0
+    while i < len(email_lst):
+        new_ascii = (ord(email_lst[i]) + 3) # NOTE: here we extract and update element at 0 
+        email_lst[i] = chr(new_ascii)   # NOTE: here we convert our ASCII into string
+        i += 1
         
     # TODO: fix line below, convert list into a string
-    email_str = "dbc012"
+    email_str = ''.join(email_lst)
 
     # keep all updates in the retVal (str) variablei
     # i.e.,
@@ -69,7 +73,7 @@ def decrypt(email="def345"):
     #     A = email[:3] (check first half)
     #     B = email[3:] (check second half)
     #     enum_flag = A or B
-    anum_flag = email[:3] != 'def' or email[3:] != '345' 
+    anum_flag = (email[:3] != 'def') or (email[3:] != '345') 
 
     if len_flag:                         # NOTE: here we provide input validation on length
         output = "Length check failed\n"
@@ -83,11 +87,19 @@ def decrypt(email="def345"):
         return output   
 
     # TODO: apply the encrypt pseudocode but shift down 3
-    
+    email_lst = ' '.join(email)
+    email_lst = email_lst.split(' ')
+    i = 0
+    while i < len(email_lst):
+        new_ascii = (ord(email_lst[i]) - 3) # NOTE: here we extract and update element at 0 
+        email_lst[i] = chr(new_ascii)   # NOTE: here we convert our ASCII into string
+        i += 1
+        
+    email_str = ''.join(email_lst)
     # keep all updates in the retVal (str) variablei
     # i.e.,
     #    email_str = " some string updates here "
     #    email_1 = email_str.strip()
     #    retVal = email_1
-    retVal = "aef345"
+    retVal = email_str
     return retVal
